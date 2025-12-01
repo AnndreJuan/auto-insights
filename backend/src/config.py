@@ -2,11 +2,15 @@
 
 
 class Settings:
-    projectName: str = "Auto Insights"
-    verion: str = "1.0.0"
-    api_url: str = "/api/v1"
+    PROJETC_NAME: str = "Auto Insights"
+    VERSION: str = "1.0.0"
+    API_URL: str = "/api/v1"
+    ENV: str = "DEV"
+    
+    CORS_ORIGINS: list = ["*"]
 
-    database_url: str = "sqlite:///app.db"
+
+    DATABASE_URL: str = "sqlite:///app.db"
 
 
 setttings = Settings()
