@@ -24,9 +24,9 @@ async def lifespan(app: FastAPI):
 app = FastAPI(
     title="auto-insights-backend",
     version="1.0.0",
-    docs_url=None if settings.env else "/docs",
-    redoc_url=None if settings.env else "/redoc",
-    openapi_url=None if settings.env else "/openapi.json",
+    docs_url="/docs" if settings.ENV == "DEV" else None,
+    redoc_url="/redoc" if settings.ENV == "DEV" else None,
+    openapi_url="/openapi.json" if settings.ENV == "DEV" else None,
     lifespan=lifespan
 )
 
@@ -44,15 +44,13 @@ if __name__ == "__main__":
     
     print(f"""
     ╔══════════════════════════════════════╗
-    ║   {settings.APP_NAME} v{settings.VERSION}        ║
+    ║   {settings.PROJETC_NAME} v{settings.VERSION}        ║
     ║   Servidor iniciando...              ║
     ╚══════════════════════════════════════╝
     """)
     
     uvicorn.run(
         "main:app",
-        host="0.0.0.0",
         port=8000,
-        reload=settings.DEBUG,
         log_level="info"
     )

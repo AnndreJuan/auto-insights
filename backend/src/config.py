@@ -9,8 +9,7 @@ class Settings:
     
     CORS_ORIGINS: list = ["*"]
 
-
     DATABASE_URL: str = "sqlite:///app.db"
 
 
-setttings = Settings()
+settings = Settings()
