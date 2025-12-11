@@ -30,6 +30,7 @@ export default function Taks() {
             {/* <TasksPrimaryButtons /> */}
           </div>
           <TasksTable data={tasks} />
+          {/* <TasksTable data={tasks} /> */}
         </Main>
 
         {/* <TasksDialogs /> */}

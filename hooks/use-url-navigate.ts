@@ -10,12 +10,15 @@ export function useUrlNavigate(): {
   const rawSearchParams = useSearchParams()
   const router = useRouter()
 
-  const search = Object.fromEntries(rawSearchParams.entries())
+  const search: SearchRecord = {}
+  for (const [key, value] of rawSearchParams.entries()) {
+    const numValue = Number(value)
+    search[key] = !isNaN(numValue) && value.trim() !== '' ? numValue : value
+  }
 
   const navigate: NavigateFn = ({ search: input, replace }) => {
     let next: SearchRecord
 
-    // transforma o input no objeto final
     if (typeof input === "function") {
       next = input(search)
     } else if (input === true) {
@@ -24,11 +27,14 @@ export function useUrlNavigate(): {
       next = { ...search, ...input }
     }
 
-    // monta os query params
     const params = new URLSearchParams()
     for (const [key, value] of Object.entries(next)) {
       if (value !== undefined && value !== null && value !== "") {
-        params.set(key, String(value))
+        if (Array.isArray(value)) {
+          params.set(key, JSON.stringify(value))
+        } else {
+          params.set(key, String(value))
+        }
       }
     }
 
