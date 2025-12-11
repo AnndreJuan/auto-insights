@@ -4,6 +4,8 @@ import { TasksProvider } from "./components/tasks-provider";
 import { TasksTable } from "./components/tasks-table";
 import { tasks } from './data/tasks'
 import { Main } from "@/components/layout/main";
+import { ProfileDropdown } from "@/components/profile-dropdown";
+import { ThemeSwitch } from "@/components/theme-switch";
 
 export default function Taks() {
   return (
@@ -13,10 +15,10 @@ export default function Taks() {
         <Header>
           <TopNav links={topNav} />
           <div className='ms-auto flex items-center space-x-4'>
-            {/* <Search />
+            {/* <Search /> */}
             <ThemeSwitch />
-            <ConfigDrawer />
-            <ProfileDropdown /> */}
+            {/* <ConfigDrawer /> */}
+            <ProfileDropdown />
           </div>
         </Header>
         <Main className='flex flex-1 flex-col gap-4 sm:gap-6'>
