@@ -3,7 +3,8 @@ import { Geist, Geist_Mono, Instrument_Sans } from "next/font/google";
 import "./globals.css";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/layout/sidebar/app-sidebar";
-import { ThemeProvider } from '@/context/theme-provider'
+import { ThemeProvider } from "@/components/theme-provider"
+import { SearchProvider } from "@/context/search-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,14 +36,21 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} antialiased`}
       >
+
         <ThemeProvider
-          defaultTheme="system">
-          <SidebarProvider>
-            <AppSidebar />
-            <SidebarInset>
-              {children}
-            </SidebarInset>
-          </SidebarProvider>
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+          >
+          <SearchProvider>
+            <SidebarProvider>
+              <AppSidebar />
+              <SidebarInset>
+                {children}
+              </SidebarInset>
+            </SidebarProvider>
+          </SearchProvider>
         </ThemeProvider>
       </body>
     </html>

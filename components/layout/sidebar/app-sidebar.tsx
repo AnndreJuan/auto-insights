@@ -15,7 +15,7 @@ import { NavUser } from './nav-user'
 
 export function AppSidebar() {
   return (
-    <Sidebar variant="inset">
+    <Sidebar variant="inset" collapsible="icon">
       <SidebarHeader>
         {/* <TeamSwitcher teams={sidebarData.teams} /> */}
 

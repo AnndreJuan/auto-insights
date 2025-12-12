@@ -53,6 +53,22 @@ function useSidebar() {
   return context
 }
 
+function getInitialSidebarState(defaultState: boolean): boolean {
+    if (typeof window === "undefined") {
+        return defaultState
+    }
+    const cookies = document.cookie.split(";").map(cookie => cookie.trim())
+    const sidebarCookie = cookies.find(cookie => cookie.startsWith(`${SIDEBAR_COOKIE_NAME}=`))
+
+    if (sidebarCookie) {
+        // Pega o valor (true ou false) após o '='
+        const value = sidebarCookie.split("=")[1]
+        // Converte a string "true" ou "false" para o booleano real
+        return value === "true"
+    }
+    return defaultState
+}
+
 function SidebarProvider({
   defaultOpen = true,
   open: openProp,
@@ -68,6 +84,11 @@ function SidebarProvider({
 }) {
   const isMobile = useIsMobile()
   const [openMobile, setOpenMobile] = React.useState(false)
+
+  const [
+        _open1,
+        _setOpen1
+    ] = React.useState(() => getInitialSidebarState(defaultOpen))
 
   // This is the internal state of the sidebar.
   // We use openProp and setOpenProp for control from outside the component.
