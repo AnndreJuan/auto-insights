@@ -25,16 +25,16 @@ import {
   TableRow,
 } from '@/components/ui/table'
 import { DataTablePagination, DataTableToolbar } from '@/components/data-table'
-import { priorities, statuses } from '../data/data'
-import { type Task } from '../data/schema'
+import { statuses } from '../data/data'
+import { type Users } from '../data/schema'
 import { DataTableBulkActions } from './data-table-bulk-actions'
-import { tasksColumns as columns } from './tasks-columns'
+import { usersColumns as columns } from './users-columns'
 
 type DataTableProps = {
-  data: Task[]
+  data: Users[]
 }
 
-export function TasksTable({ data }: DataTableProps) {
+export function UserTable({ data }: DataTableProps) {
   const [rowSelection, setRowSelection] = useState({})
   const [sorting, setSorting] = useState<SortingState>([])
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
@@ -89,16 +89,11 @@ export function TasksTable({ data }: DataTableProps) {
         table={table}
         searchPlaceholder='Filter by title or ID...'
         filters={[
-          {
-            columnId: 'status',
-            title: 'Status',
-            options: statuses,
-          },
-          {
-            columnId: 'priority',
-            title: 'Priority',
-            options: priorities,
-          },
+          // {
+          //   columnId: 'status',
+          //   title: 'Status',
+          //   options: statuses,
+          // },
         ]}
       />
       <div className='overflow-hidden rounded-md border'>

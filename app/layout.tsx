@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Instrument_Sans } from "next/font/google";
 import "./globals.css";
+import { cn } from '@/lib/utils'
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/layout/sidebar/app-sidebar";
 import { ThemeProvider } from "@/components/theme-provider"
@@ -46,7 +47,19 @@ export default function RootLayout({
           <SearchProvider>
             <SidebarProvider>
               <AppSidebar />
-              <SidebarInset>
+              <SidebarInset
+                className={cn(
+                // Set content container, so we can use container queries
+                '@container/content',
+
+                // If layout is fixed, set the height
+                // to 100svh to prevent overflow
+                'has-data-[layout=fixed]:h-svh',
+
+                // If layout is fixed and sidebar is inset,
+                // set the height to 100svh - spacing (total margins) to prevent overflow
+                'peer-data-[variant=inset]:has-data-[layout=fixed]:h-[calc(100svh-(var(--spacing)*4))]'
+              )}>
                 {children}
               </SidebarInset>
             </SidebarProvider>

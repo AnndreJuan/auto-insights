@@ -18,9 +18,8 @@ import {
   Users,
   MessagesSquare,
   ShieldCheck,
-  AudioWaveform,
-  Command,
-  GalleryVerticalEnd,
+  User,
+  
 } from 'lucide-react'
 import { type SidebarData } from '../sidebar/types'
 
@@ -32,19 +31,14 @@ export const sidebarData: SidebarData = {
   },
   teams: [
     {
-      name: 'Shadcn Admin',
-      logo: Command,
-      plan: 'Vite + ShadcnUI',
+      name: 'Usuário',
+      logo: User,
+      plan: 'Acesso padrão',
     },
     {
-      name: 'Acme Inc',
-      logo: GalleryVerticalEnd,
-      plan: 'Enterprise',
-    },
-    {
-      name: 'Acme Corp.',
-      logo: AudioWaveform,
-      plan: 'Startup',
+      name: 'Administrador',
+      logo: ShieldCheck,
+      plan: 'Acesso total',
     },
   ],
   navGroups: [
